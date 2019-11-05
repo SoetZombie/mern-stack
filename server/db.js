@@ -31,16 +31,16 @@ class Db {
     }
   }
 
-  async getQuestion(questionId) {
+  async getQuestion(id) {
     try {
-      return await this.questionModel.findById(questionId);
+      return await this.questionModel.findById(id);
     } catch (error) {
       return {error};
     }
   }
 
-  async postQuestion(newQuestion) {
-    let question = new this.questionModel(newQuestion);
+  async postQuestion(nQ) {
+    let question = new this.questionModel(nQ);
     console.log(question);
     try {
       return question.save();
@@ -62,10 +62,10 @@ class Db {
     }
   }
 
-  getAnswer(question, answerId) {
+  getAnswer(q, id) {
     try {
       console.log(answerId);
-      return question.answers.find(answer => answer._id == answerId);
+      return q.answers.find(a => a._id == id);
     } catch (error) {
       return {error};
     }
