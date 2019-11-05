@@ -64,16 +64,16 @@ class Db {
 
   getAnswer(q, id) {
     try {
-      console.log(answerId);
+      console.log(id);
       return q.answers.find(a => a._id == id);
     } catch (error) {
       return {error};
     }
   }
 
-  async vote(questionId, answerId) {
-    const question = await this.getQuestion(questionId);
-    const answer = this.getAnswer(question, answerId);
+  async vote(qId, aId) {
+    const question = await this.getQuestion(qId);
+    const answer = this.getAnswer(question, aId);
     answer.votes = answer.votes + 1;
     return question.save();
   }
